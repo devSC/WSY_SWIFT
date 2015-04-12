@@ -3,6 +3,7 @@
 import UIKit
 
 var str = "Hello, playground"
+//: Playground - noun: a place where people can play
 let individualScores = [75, 43, 103, 87, 98]
 var teamSocre = 0
 for score in individualScores {
@@ -388,28 +389,111 @@ enum Suit {
 
 let hearts = Suit.Hearts
 let heartsDescription = hearts.simpleDescription()
-                  
+
+let mSpades = Suit.Spades
+
+
+var myName: String = "yuanshichong"
+myName
+
+
+//struct Card {
+//    var rank: Rank
+//    var suit: Suit
+//    func simpleDescription() ->String {
+//        return "the \(rank.simpleDescription()) of \(suit.simpleDescription())"
+//    }
+//}
+//let threeOfSpades = Card (rank: .Three, suit: .Spades)
 
 enum ServerResponse {
     case Result(String, String)
     case Error(String)
 }
 
-let success = ServerResponse.Result
 
-var myName: String = "yuanshichong"
-myName
-
-
-struct Card {
-    var rank: Rank
-    var suit: Suit
-    func simpleDescription() ->String {
-    return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
+let success = ServerResponse.Result("6:00 am", "8:09 pm")
+let failure = ServerResponse.Error("out of cheese")
+switch success {
+case let .Result (sunrise, sunset):
+        let serverResponse = "sunrise is at \(sunrise) and sunset is ant \(sunset)"
+case let .Error(error):
+    let serverResponse = "Failure... \(error)"
 }
-}let threeOfSpades = Card(rank: .Three, suit: .Spades)
-let threeOfSpadesDescription = threeOfSpades.simpleDescription()
-                                                                                                                                                                                                                                                                 
 
+//协议和扩展
+protocol ExampleProtocol {
+    var simpleDescription: String { get }
+    mutating func adjust()
+}
+//类\枚举和结构体都可以实现协议
+class SimpleClass: ExampleProtocol {
+    var simpleDescription: String = "A very simple class."
+    var anotherProperty: Int = 69105
+    
+    func adjust() {
+        simpleDescription += " Now 100% adjusted"
+    }
+}
+
+var a = SimpleClass()
+a.adjust()
+let aDescription = a.simpleDescription
+
+struct SimpleStructure: ExampleProtocol {
+    var simpleDescription: String = "A very simple structure."
+    mutating func adjust() { //mutating 关键字用来标记一个会修改结构体的方法
+        simpleDescription += " (adjusted) "
+    }
+}
+var b = SimpleStructure()
+b.adjust()
+let bDescription = b.simpleDescription
+
+//使用extension来为现有的类型添加新功能, 比如新的方法和参数, 你可以使用扩展来改造定义在别处,甚至是从外部库或者框架引入的一个类型,使得这个类型遵循某个协议
+extension Int: ExampleProtocol {
+    var simpleDescription: String {
+        return "The number \(self)"
+    }
+    mutating func adjust() {
+        self += 42
+    }
+}
+
+7.simpleDescription
+
+//泛型
+//在尖括号里写一个名字来创建一个泛型函数或者类型
+
+func repeat<ItemType>(item: ItemType, times: Int) -> [ItemType] {
+    var result = [ItemType]()
+    for i in 0..<times {
+        result.append(item)
+    }
+    return result
+}
+repeat("knoke", 4)
+
+//你也可以创建泛型类. 枚举和结构体
+
+enum OptionalValue<T> {
+    case None
+    case Some(T)
+}
+var possibleInteger: OptionalValue<Int> = .None
+possibleInteger = .Some(100)
+
+//在类型后面使用where来指定对类型的需求, 比如: 限定类型实现某一个协议, 限定两个类型数相同的, 或者限定某一个累必须有一个特定的父类
+//func anyCommonElements <T, U where T: SquenceType, U: SquenceType, T.Generator.Element: Equatable, T.Generator.Element == U.Generator.Element> (lhs: T, rhs: U) -> Bool {
+//    for lhsItem in lhs {
+//        for rhsItem in rhs {
+//            if lhsItem == rhsItem {
+//                return true
+//            }
+//        }
+//    }
+//    return false
+//}
+//anyCommonElements([1,2,3], [3])
 
 
