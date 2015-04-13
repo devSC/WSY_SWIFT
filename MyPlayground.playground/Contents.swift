@@ -653,8 +653,31 @@ func alignRight(var string: String, counts: Int, pad: Character) -> String {
     return string
 }
 
-let originalString = "hello"
+var originalString = "hello"
 let paddedString = alignRight(originalString, 10, "-")
+
+func swapTwoInts(inout a: Int, inout b: Int) {
+    let temporaryA = a
+    a = b
+    b = temporaryA
+}
+
+var someInt = 3
+var anotherInt = 107
+swapTwoInts(&someInt, &anotherInt)
+someInt
+anotherInt
+
+func printHelloWorld() {
+    "hello world"
+}
+
+printHelloWorld()//无参无返回值
+
+
+
+
+
 
 
                                                                                                                                                                                                                                                                    
