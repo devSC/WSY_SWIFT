@@ -388,7 +388,273 @@ enum Suit {
 
 let hearts = Suit.Hearts
 let heartsDescription = hearts.simpleDescription()
+/*
+//struct Card {
+//        var rank : Rank
+//        var suit: Suit
+//        func simpleDescription() -> String {
+//        return "The \(rank,simpleDescription()) of \(suit.simpleDescription())"
+//    }
+//}
+//let threeOfSpades = Card(rank: .Three, suit: .Spades)
+//let threeOfSpadesDescription = threeOfSpades.simpleDescription()
+//
+//struct <#name#> {
+//    <#properties and methods#>
+//}
+*/
+typealias AudioSample = UInt16
+var maxAmplitudeFound = AudioSample.min
 
-//https://github.com/ipader/SwiftGuide#spl                                                                                                                                                                                                                                                                                                                                                                       
+let orangeAreOriange = true
+let turnipsAreDelicious = false
+
+//元组
+let http404Error = (404, "Not found")
+//http404Error的类型是 (Int, String), 值是(404, "Not found")
+
+let (statusCode, statusMessage) = http404Error
+statusCode
+statusMessage
+
+let (justTheStatusCode, _) = http404Error
+justTheStatusCode
+
+http404Error.0
+http404Error.1
+
+let http200Status = (statusCode: 200, description: "OK")
+http200Status.statusCode
+http200Status.description
+
+let possibleNumber = "123"
+let convertedNumber = possibleNumber.toInt()
+
+if convertedNumber != nil {
+    convertedNumber
+} else {
+    convertedNumber
+}
 
 
+/*=======================
+可选绑定--用来判断可选类型是否包含值, 如果包含就把值赋给一个临时变量,
+*/
+
+
+if let actualNumber = possibleNumber.toInt() {
+    actualNumber
+} else {
+//    actualNumber
+}
+
+var surveyAnswer: String?
+surveyAnswer
+
+
+let possibleString: String? = "An optional string"
+//println(possibleString!)  //需要惊叹号来获取值
+//possibleNumber!
+
+
+let assumedString: String! = "An implicity unwrapped optional string."
+//println(assumedString)
+//assumedString
+
+let age = -3
+//assert(age >= 0, "a person's age can't be less than zero")
+//
+//assert(age > 3)
+
+/*=======================
+    运算符
+*/
+//如果赋值的右边是一个多元组, 他的元素可以马上被分解为多个常量或者变量
+let (x, y) = (1, 2)
+x
+y
+
+let xy = x % y
+xy
+
+if x != y {
+    println ("x != y")
+} else {
+    println ("x = y")
+}
+
+var emptyString = ""
+var anotherEmptyString = String()
+emptyString
+anotherEmptyString
+
+if emptyString.isEmpty {
+    emptyString
+} else {
+    emptyString
+}
+
+for character in "My beautiful girl" {
+    character
+}
+
+let yenSign: Character = "😄"
+let unusualMenagerie = "Koala, Small, penguin, Dromedary"
+let unusualCount = count(unusualMenagerie)
+unusualCount
+
+var shoppingList = ["eggs", "milk"]
+shoppingList.isEmpty
+shoppingList += ["baking"]
+shoppingList += ["chocolate", "cheese", "butter"]
+
+shoppingList[0]
+
+shoppingList[2...4] = ["banneas"]
+shoppingList
+
+shoppingList.insert("哈哈", atIndex: 2)
+
+for (index, value) in enumerate(shoppingList) {
+    index
+    value
+}
+
+var threeDoubles = [Double](count: 3, repeatedValue: 0.0)
+threeDoubles
+
+var airports: [String: String] = ["TYO": "TOKYO", "DUB" : "doblin"]
+
+//airports.removeValueForKey("DUB")
+//airports
+
+let airportCodes = Array(airports.keys)
+
+
+var namesOfIntegers = Dictionary<Int, String>()
+namesOfIntegers[16] = "sixteen"
+
+namesOfIntegers = [:]
+
+
+for var index = 0; index < 3; index++ {
+    index
+}
+
+
+let finalSquare = 25
+var board = [Int](count: finalSquare+1, repeatedValue: 0)
+board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
+board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
+var squares = 0
+var diceRoll = 0
+while squares < finalSquare {
+    //掷色子
+    if ++diceRoll == 7 { diceRoll = 1}
+    //移动点数
+    squares += diceRoll
+    if squares < board.count {
+        //如果玩家在棋盘上, 顺着梯子爬上去或者顺着蛇滑下去
+        squares += board[squares]
+    }
+}
+
+
+let someCharacter: Character = "e"
+switch someCharacter {
+case "a", "e", "i", "o", "u":
+    let value = "\(someCharacter) is a vowel"
+    
+//case  ​"b"​, ​"c"​, "d"​, ​"f"​, ​"g"​, ​"h"​, ​"j"​, ​"k"​, ​"l"​, ​"m"​,"n"​, ​"p"​, ​"q"​, ​"r"​, ​"s"​, ​"t"​, ​"v"​, ​"w"​, ​"x"​, ​"y"​, ​"z"​:
+//    let value = "\(someCharacter) is a consonant"
+default:
+    let value = "\(someCharacter) is not a vowel or a consnant"
+}
+
+let yetAnotherPoint = (1, -1)
+switch yetAnotherPoint {
+case let(x, y) where x == y:
+    x
+    y
+case let(x, y) where x == -y:
+    x
+    y
+case let (x, y):
+    x
+    y
+fallthrough //挨着default
+default:
+    yetAnotherPoint
+}
+
+squares = 0
+diceRoll = 0
+gameLoop: while squares != finalSquare {
+    if ++diceRoll == 7 { diceRoll  = 1 }
+    switch squares + diceRoll {
+    case finalSquare :
+        "完成了"
+        break gameLoop
+    case let newSquare where newSquare > finalSquare :
+        continue gameLoop
+    default:
+        squares += diceRoll
+        squares += board[squares]
+    }
+}
+
+func sayHello(personName: String) ->String {
+    let greeting = "hello, " + personName + "!"
+    return greeting
+}
+sayHello("南哥")
+
+func someFunction(externalParameterName localParameterName: Int) {
+    localParameterName
+}
+
+someFunction(externalParameterName: 90)
+
+func containsCharacter(#string: String, #characterToFind: Character) ->Bool {
+    for charchter in string {
+        if charchter == characterToFind {
+            return true
+        }
+    }
+    return false
+}
+
+let containsAVee = containsCharacter(string: "aadrvark", characterToFind: "v")
+
+func join(s1: String, #s2: String, joiner: String = "  ") ->String {
+    return s1 + joiner + s2
+}
+
+func arithmeticMean(numbers: Double...) -> Double {
+    var total: Double = 0
+    for number in numbers {
+        total += number
+    }
+    return total
+}
+
+arithmeticMean(1, 2, 3, 4,5)
+
+func alignRight(var string: String, counts: Int, pad: Character) -> String {
+    let amountToPad = counts - count(string)
+    if amountToPad < 1 {
+        return string
+    }
+    let padString = String(pad)
+    
+    for _ in 1...amountToPad {
+        string = padString + string
+    }
+    return string
+}
+
+let originalString = "hello"
+let paddedString = alignRight(originalString, 10, "-")
+
+
+                                                                                                                                                                                                                                                                   
