@@ -27,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FEA4FADE1ADAAB5C0085300F /* MyPlayground2.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground2.playground; sourceTree = "<group>"; };
 		FECBC68A1A07BAA600699CF1 /* StartSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StartSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FECBC68E1A07BAA600699CF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FECBC68F1A07BAA600699CF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 		FECBC6811A07BAA600699CF1 = {
 			isa = PBXGroup;
 			children = (
+				FEA4FADE1ADAAB5C0085300F /* MyPlayground2.playground */,
 				FED863331AD8EFB4001624AB /* MyPlayground.playground */,
 				FECBC68C1A07BAA600699CF1 /* StartSwift */,
 				FECBC6A41A07BAA700699CF1 /* StartSwiftTests */,
