@@ -7,9 +7,45 @@
 //
 
 import UIKit
+extension UIBezierPath {
+    convenience init(triangleSideLength: Float, origin: CGPoint) {
+        self.init()
+        let squareRoot = Float(sqrt(3.0))
+        let altitude = (squareRoot * triangleSideLength) / 2
+        moveToPoint(origin)
+//        addLineToPoint(CGPoint(x: triangleSideLength, y: origin.x))
+//        addLineToPoint(CGPoint (x: triangleSideLength / 2, y: altitude))
+//        addLineToPoint(CGPoint (x: triangleSideLength, y: origin.x))
+        closePath()
+    }
+}
+
+
+extension CGRect {
+    var area: CGFloat {
+        return width * height
+    }
+}
 
 class FirstViewController: UIViewController {
+    let myButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        let mySelector: Selector = "tappedButton:"
+        myButton.addTarget(self, action: mySelector, forControlEvents: UIControlEvents.TouchUpInside)
+        
+        
+    }
 
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+//        fatalError("init(coder:) has not been implemented")
+    }
+
+    func tappedButton(sender: UIButton!) {
+        println("tappedButton")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -60,25 +96,41 @@ class FirstViewController: UIViewController {
 //        world = "\(world) is Big world \(s)"
 //        println(world)
 
-        let myTableView = UITableView(frame: self.view.frame, style: .Plain)
-        myTableView.backgroundColor = UIColor.redColor()
+//        let myTableView = UITableView(frame: self.view.frame, style: .Plain)
+//        myTableView.backgroundColor = UIColor.redColor()
+//        
+//        self.view .addSubview(myTableView)
+//        myTableView.layoutSubviews()
+//        
+//        var myObject: AnyObject = UITableViewCell()
+////        let myLength = myObject.length?
+//        let myChar = myObject.characterAtIndex?(5)
+//        
+//        let userDefault = NSUserDefaults.standardUserDefaults()
+//        let lastRefreshData: AnyObject? = userDefault.objectForKey("lastRefreshDate")
+//        if let date = lastRefreshData as? NSDate {
+//            date
+//        }
+//        
+//        let myTextField = UITextField(frame: CGRectMake(200, 200, 200, 200))
+//        myTextField.textColor = UIColor.yellowColor()
+//        myTextField.text = "Hello ni hao"
+//        if myTextField.editing {
+////            myTextField.editing = false
+//        }
         
-        self.view .addSubview(myTableView)
-        myTableView.layoutSubviews()
+        let rect = CGRect(x: 0.0, y: 0.0, width: 10.0, height: 50)
+        let area = rect.area
+        println(area)
         
-        var myObject: AnyObject = UITableViewCell()
-        let myLength = myObject.length?
-        let myChar = myObject.characterAtIndex?(5)
-        
-        let userDefault = NSUserDefaults.standardUserDefaults()
-        let lastRefreshData: AnyObject? = userDefault.objectForKey("lastRefreshDate")
-        if let date = lastRefreshData as? NSDate {
-            date
-        }
+        self.view.addSubview(myButton)
         
         
-
+        
+        
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
