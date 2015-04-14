@@ -653,31 +653,168 @@ func alignRight(var string: String, counts: Int, pad: Character) -> String {
     return string
 }
 
-var originalString = "hello"
+let originalString = "hello"
 let paddedString = alignRight(originalString, 10, "-")
 
-func swapTwoInts(inout a: Int, inout b: Int) {
-    let temporaryA = a
-    a = b
-    b = temporaryA
+func addTwoInts(a: Int, b: Int) ->Int {
+    a + b
+    return a + b
 }
 
-var someInt = 3
-var anotherInt = 107
-swapTwoInts(&someInt, &anotherInt)
-someInt
-anotherInt
-
-func printHelloWorld() {
-    "hello world"
+func stepForward(input: Int) -> Int {
+    input + 1
+    return input + 1
 }
 
-printHelloWorld()//无参无返回值
+func stepBackward(input: Int) -> Int {
+    input - 1
+    return input - 1
+}
+
+func chooseStepFunction(backwards: Bool) -> (Int) ->Int {
+    return backwards ? stepBackward : stepForward
+}
+
+var currentValue = 3
+let moveNearerToZero = chooseStepFunction(3 > 0) //判断用哪个函数
 
 
+while currentValue != 0 {
+    currentValue = moveNearerToZero (currentValue) //用哪个函数
+}
 
 
+let names = ["chris", "alex", "ewa", "barry", "daniella"]
+func backwards(s1: String, s2: String) -> Bool {
+    return s1 > s2
+}
 
 
+var reversed = sorted(names, backwards)
 
-                                                                                                                                                                                                                                                                   
+reversed = sorted(names,  >)
+
+reversed = sorted(names) { $0 > $1}
+
+
+func makeIncrementor(forIncremnt amount: Int) -> () -> Int {
+    var runningTotal = 0
+    func incrementor() -> Int {
+        runningTotal += amount
+        return runningTotal
+    }
+    return incrementor
+}
+
+let incrementByTen  = makeIncrementor(forIncremnt: 10)
+incrementByTen()
+incrementByTen()
+incrementByTen()
+
+enum Barcode {
+    case UPCA(Int, Int, Int)
+    case QRCODE(String)
+}
+
+var productBarcode = Barcode.UPCA(8, 827282_2728, 3)
+
+productBarcode = .QRCODE("avciciusofs") //枚举情况下 只能存取一个值
+
+struct Resolution {
+    var width = 0
+    var height = 0
+}
+
+class VideoMode {
+    var resolution = Resolution()
+    var interlaced = false
+    var frameRage = 0.0
+    var name: String?
+}
+
+//结构体和枚举是值类型
+
+let someResolution = Resolution() //通过添加()的方式初始化的类或者结构体 其属性均被会初始化为默认值
+let someVideoMode = VideoMode()
+someVideoMode.resolution.width = 20
+someVideoMode.resolution.height = 800
+someVideoMode.name = "天下无贼"
+
+let vga = Resolution(width: 640, height: 960)
+
+let alsoSomeVideoMode = someVideoMode
+alsoSomeVideoMode.resolution.width = 900
+someVideoMode
+
+if alsoSomeVideoMode === someVideoMode {
+    "两个相等"
+}
+
+class DataImporter {
+    var fileName = "data.txt"
+}
+class DataManager {
+    lazy var improter = DataImporter()
+    var data = [String]() //申明一个字符串数组
+    
+}
+
+let manager = DataManager()
+manager.data.append("someData")
+manager.data.append("some more data")
+
+manager.improter.fileName //lazy 延迟加载
+
+
+struct Point {
+    var x = 0.0, y = 0.0
+}
+
+struct Size {
+    var width = 0.0, height = 0.0
+}
+
+struct Rect {
+    var origin = Point()
+    var size = Size()
+    var center: Point {
+        get {
+            let centerX = origin.x + (size.width / 2)
+            let centerY = origin.y + (size.height / 2)
+            return Point (x: centerX, y: centerY)
+        }
+        set (newCenter){
+            origin.x = newCenter.x - size.width / 2
+            origin.y = newCenter.y - size.height / 2
+            
+        }
+    }
+}
+
+var squareRect = Rect(origin: Point(x: 0.0, y: 0.0), size: Size(width: 10.0, height: 10.0))
+let initialSquareCenter = squareRect.center //调用get方法
+squareRect.center = Point(x: 15.0, y: 15.0) //调用set方法
+
+//只读计算属性
+class StepCounter {
+    var totalSteps: Int = 0 {
+        willSet {
+            "will set"
+            newValue
+        }
+        didSet {
+            if totalSteps > oldValue {
+                    "didSet"
+                oldValue
+                totalSteps
+                
+            }
+        }
+    }
+}
+
+
+let stepCounter = StepCounter()
+stepCounter.totalSteps = 100
+
+
