@@ -817,4 +817,167 @@ class StepCounter {
 let stepCounter = StepCounter()
 stepCounter.totalSteps = 100
 
+class Counter {
+    var count = 0
+    func increment() { //让记不起按一递增 的实例方法
+        count++
+    }
+    func incrementBy(amount: Int, _: Int) {
+        count += amount
+    }
+    func reset() {
+        count = 0
+    }
+}
+
+let incrementCounter = Counter()
+incrementCounter.increment()
+//incrementCounter.incrementBy(10, numberOfTimes: 2)
+incrementCounter.incrementBy(20, 20)
+
+struct LPPoint {
+    var x = 0.0, y = 0.0
+    mutating func moveByX(deltaX: Double, y deltaY: Double) {
+        x += deltaX
+        y += deltaY
+    }
+}
+
+var someLPPoint = LPPoint(x: 1.0, y: 1.0)
+someLPPoint.moveByX(2.0, y: 3.0)
+
+struct LevelTracker {
+    static var highestUnlockedLevel = 1
+    static func unlockLevel(level: Int) {
+        if level > highestUnlockedLevel { highestUnlockedLevel = level }
+    }
+    
+    static func levelIsUnlocked(level: Int) -> Bool {
+        return level <= highestUnlockedLevel
+    }
+    
+    var currentLevel = 1
+    
+    mutating func advanceToLevel(level: Int) -> Bool {
+        //判断有没有解锁
+        if LevelTracker.levelIsUnlocked(level) {
+            currentLevel = level
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+class Player {
+    var tracker = LevelTracker()
+    let playerName: String
+    func completedLevel(level: Int) {
+        //解锁
+        LevelTracker.unlockLevel(level + 1)
+        tracker.advanceToLevel(level + 1)
+    }
+    init(name: String) {
+        playerName = name
+    }
+}
+
+var player = Player(name: "Beto")
+if player.tracker.advanceToLevel(6) {
+    "Player is now on level6"
+} else {
+    "level 6 has not yet been unlocked"
+}
+
+struct TimesTable {
+    let multiplier: Int //几倍
+    subscript(index: Int) -> Int {
+        return multiplier * index
+    }
+}
+
+let threeTimesTable = TimesTable(multiplier: 3)
+"6的3倍是\(threeTimesTable[6] )"//访问subscript(index: Int)
+
+
+struct Matrix {
+    let rows: Int, columns: Int
+    var grid: [Double]
+    init(rows: Int, columns: Int) {
+        self.rows = rows
+        self.columns = columns
+        self.rows
+        self.columns
+        grid = Array(count: rows * columns, repeatedValue: 0.0)
+    }
+    func indexIsValidForRow(row: Int, column: Int) -> Bool {
+        return row >= 0 && row < rows && column >= 0 && column < columns
+    }
+    
+    subscript (row: Int, columen: Int) -> Double {
+        get {
+            assert(indexIsValidForRow(row, column: columen), "Index out of range")
+            return grid[(row * columns) + columen]
+        }
+        set {
+            assert(indexIsValidForRow(row, column: columen), "Index out of range")
+            grid[(row * columns) + columen] = newValue
+        }
+    }
+}
+
+var matrix = Matrix(rows: 2, columns: 5)
+matrix[0, 1] = 3.88
+matrix
+
+class Vehicle {
+    var currentSpeed = 0.0
+    var description: String {
+        return "Traveling at \(currentSpeed) miles per hour"
+    }
+    func makeNoise() {
+    
+    }
+}
+
+let someVehicle = Vehicle()
+someVehicle.description
+
+class Bicycle:  Vehicle {
+    var hasBasked = false
+}
+
+let bicycle = Bicycle()
+bicycle.hasBasked = true
+
+bicycle.currentSpeed = 70
+bicycle.description
+
+class Tandem: Bicycle {
+    var currentNumberOfPassengers = 0
+}
+
+let tandem = Tandem()
+tandem.description
+
+class Train: Vehicle {
+    let test: String
+    let test2: String
+    override func makeNoise() {
+        "啦啦啦"
+    }
+    final func makeFun() {
+    
+    }
+    init(test: String, test2: String) {
+        self.test = "哈哈, 这个事个\(test)"
+        self.test2 = "啦啦, \(test2)"
+    }
+}
+let train = Train(test: "lalala", test2: "nime")
+
+
+
+
+
 

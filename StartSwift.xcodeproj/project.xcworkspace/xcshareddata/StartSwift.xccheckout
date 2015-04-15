@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>85325537-481E-4D76-B423-057857AAA253</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>StartSwift</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>4542A3004FF2692D796EF175FA09AD877F14A11B</key>
 		<string>github.com:devSC/WSY_SWIFT.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>StartSwift.xcodeproj/project.xcworkspace</string>
+	<string>StartSwift.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>4542A3004FF2692D796EF175FA09AD877F14A11B</key>

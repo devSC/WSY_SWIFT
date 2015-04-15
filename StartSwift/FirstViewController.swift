@@ -27,7 +27,7 @@ extension CGRect {
     }
 }
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let myButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -36,6 +36,7 @@ class FirstViewController: UIViewController {
         
         
     }
+
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -96,12 +97,12 @@ class FirstViewController: UIViewController {
 //        world = "\(world) is Big world \(s)"
 //        println(world)
 
-//        let myTableView = UITableView(frame: self.view.frame, style: .Plain)
-//        myTableView.backgroundColor = UIColor.redColor()
-//        
-//        self.view .addSubview(myTableView)
-//        myTableView.layoutSubviews()
-//        
+        let myTableView = UITableView(frame: self.view.frame, style: .Plain)
+        myTableView.tableFooterView = UIView(frame: CGRectZero)
+        myTableView.delegate = self;
+        myTableView.dataSource = self;
+        self.view .addSubview(myTableView)
+//
 //        var myObject: AnyObject = UITableViewCell()
 ////        let myLength = myObject.length?
 //        let myChar = myObject.characterAtIndex?(5)
@@ -119,18 +120,25 @@ class FirstViewController: UIViewController {
 ////            myTextField.editing = false
 //        }
         
-        let rect = CGRect(x: 0.0, y: 0.0, width: 10.0, height: 50)
-        let area = rect.area
-        println(area)
-        
-        self.view.addSubview(myButton)
+//        let rect = CGRect(x: 0.0, y: 0.0, width: 10.0, height: 50)
+//        let area = rect.area
+//        println(area)
+//        
+//        self.view.addSubview(myButton)
         
         
         
         
     }
     
-    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
+        cell.textLabel?.text = "这是一个测试,Cell: \(indexPath.row)"
+        return cell
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
