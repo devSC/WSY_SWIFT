@@ -976,8 +976,183 @@ class Train: Vehicle {
 }
 let train = Train(test: "lalala", test2: "nime")
 
+class Food {
+    var name: String
+    init(name: String) {
+        self.name = name
+    }
+    convenience init() {
+        self.init(name: "[Unnamed]")
+    }
+}
+
+let namedMeat = Food(name: "Bacon")
+let myStreyMeat = Food()
 
 
+class RecipeIngredient: Food {
+    var quantity: Int
+    init(name: String, quantity: Int) {
+        self.quantity = quantity
+        super.init(name: name)
+    }
+    override convenience init(name: String) {
+        self.init(name: name, quantity: 1)
+    }
+}
+
+let oneBacon = RecipeIngredient(name: "lala")
+let oneBacon2 = RecipeIngredient()
+
+
+struct ChecterBoard {
+    let boardColors: [Bool] = {
+        var temporaryBoard = [Bool]()
+        var isBlack = false
+        for i in 1...10 {
+            for j in 1...10 {
+                temporaryBoard.append(isBlack)
+                isBlack = !isBlack
+            }
+            isBlack = !isBlack
+        }
+        return temporaryBoard
+    }()
+    
+    func squareIsBlackAtRow(row: Int, column: Int) -> Bool {
+        return boardColors[(row * 10) + column]
+    }
+//    deinit /*析构函数*/{
+//        "被调用deinit"
+//    }
+}
+
+let checterBoard = ChecterBoard()
+checterBoard.squareIsBlackAtRow(2, column: 1)
+
+
+class HTMLElement {
+    let name: String
+    let text: String?
+    
+    lazy var asHTML: () -> String = {
+        [unowned self] in //避免强引用
+        if let text = self.text {
+            return "<\(self.name)>\(text)</\(self.name)>"
+        } else {
+            return "<\(self.name)/>"
+        }
+    }
+    init(name: String, text: String? = nil) {
+        self.name = name
+        self.text = text
+    }
+}
+var paragraph: HTMLElement? = HTMLElement(name: "p", text: "HelloWorld")
+paragraph?.asHTML()
+
+class Person {
+    var residence: Residence?
+}
+class Residence {
+    var rooms = [Room]()
+    var numberOfRooms: Int {
+        return rooms.count
+    }
+    subscript(i: Int) -> Room {
+        return rooms[i]
+    }
+    func printNumerOfRooms() {
+        "number of rooms is \(numberOfRooms)"
+    }
+    var address: Address?
+}
+
+
+class Room {
+    let name: String
+    init(name: String) { self.name = name}
+}
+
+class Address {
+    var buildingName: String?
+    var buildingNumber: String?
+    var street: String?
+    func buildingIdentifier() -> String? {
+        if buildingName != nil {
+            return buildingName
+        } else if buildingNumber != nil {
+            return buildingNumber
+        } else {
+            return nil
+        }
+        
+    }
+}
+let john = Person()
+if let roomCount = john.residence?.numberOfRooms {
+    roomCount
+} else {
+    "room Count is nil"
+}
+
+if john.residence?.printNumerOfRooms() != nil {
+    "it was possible to print number of rooms"
+} else {
+    "it was not possible to print number of rooms"
+}
+
+if let firstRoomName = john.residence?[0].name {
+    "room name is \(firstRoomName)"
+} else {
+    "filure"
+}
+john.residence?.address?.street
+
+
+var thing = [Any]()
+
+thing.append(0)
+thing.append(0.0)
+thing.append(54)
+thing.append("啦啦")
+thing.append(3.123122132142)
+thing.append((3.0, 5.0))
+thing.append(john)
+
+for th in thing {
+    switch th {
+    case 0 as Int:
+        "0 is int"
+    case 0 as Double:
+        "zero as a double"
+    case let someInt as Int:
+        "an int value of \(someInt)"
+    case let someDouble as Double where someDouble > 0:
+        "an double value \(someDouble)"
+    case let json as Person:
+        json
+    default:
+        th
+    }
+    
+}
+
+protocol SomeProtocol {
+    init()
+}
+
+class SomeSuperClass {
+    init() {
+    
+    }
+}
+
+class SomeSubClass: SomeSuperClass, SomeProtocol {
+    override required init() {
+        
+    }
+}
 
 
 

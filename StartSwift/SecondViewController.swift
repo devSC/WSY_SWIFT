@@ -24,15 +24,15 @@ class SecondViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
 //        NSLocalizedString(<#key: String#>, tableName: <#String?#>, bundle: <#NSBundle#>, value: <#String#>, comment: <#String#>)
         
-        let foundationArray = [AnyObject]()
-        if let swiftArray = foundationArray as? [String]{
-            if let downCoatedSwiftArray = foundationArray as? [UIView] {
-                
-            }
-        
-        }else {
-        
-        }
+//        let foundationArray = [AnyObject]()
+//        if let swiftArray = foundationArray as? [String]{
+//            if let downCoatedSwiftArray = foundationArray as? [UIView] {
+//                
+//            }
+//        
+//        }else {
+//        
+//        }
         
         var writeError: NSError?
         var myString = "哈哈,这样真的好吗?"
