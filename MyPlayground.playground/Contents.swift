@@ -1155,4 +1155,11 @@ class SomeSubClass: SomeSuperClass, SomeProtocol {
 }
 
 
+func swapTwoValues<T>(inout a: T, inout b: T) {
+    let temporaryA = a
+    a = b
+    b = temporaryA
+}
+
+
 
