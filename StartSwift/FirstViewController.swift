@@ -128,7 +128,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         
         
-        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -144,7 +143,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }
 
