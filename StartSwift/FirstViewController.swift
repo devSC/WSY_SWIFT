@@ -97,11 +97,11 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        world = "\(world) is Big world \(s)"
 //        println(world)
 
-        let myTableView = UITableView(frame: self.view.frame, style: .Plain)
-        myTableView.tableFooterView = UIView(frame: CGRectZero)
-        myTableView.delegate = self;
-        myTableView.dataSource = self;
-        self.view .addSubview(myTableView)
+//        let myTableView = UITableView(frame: self.view.frame, style: .Plain)
+//        myTableView.tableFooterView = UIView(frame: CGRectZero)
+//        myTableView.delegate = self;
+//        myTableView.dataSource = self;
+//        self.view .addSubview(myTableView)
 //
 //        var myObject: AnyObject = UITableViewCell()
 ////        let myLength = myObject.length?
@@ -126,8 +126,44 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        
 //        self.view.addSubview(myButton)
         
+        //测试闭包
+        func greetPeople(person: String) -> String {
+            return "Hello, \(person)!"
+        }
         
+        let guestList = ["chris", "jill", "tim"]
+        let fullGreeting = guestList.map(greetPeople)
+        fullGreeting.map(println)
         
+        let fullGreeting2 = fullGreeting.map({
+            person in
+            return "hello, \(person)"
+        })
+      
+        let fullGreeting3 = fullGreeting.map({
+            (person: String) -> String in
+            return "hello, \(person)"
+        })
+        fullGreeting2.map(println)
+        
+        let fullGreet4 = fullGreeting3.map( {
+            person in
+            "4==hello, \(person)"
+        })
+        fullGreet4.map(println)
+        let full5 = fullGreet4.map( {
+            "5==hello, \($0)!"
+        })
+        
+        let full6 = full5.map() {
+            "6== hello, \($0)"
+        }
+        
+        var oldArray = [10,20,45,32]
+        var filteredArray  = oldArray.filter({
+            return $0 > 30
+        })
+        println(filteredArray)
         
     }
     
