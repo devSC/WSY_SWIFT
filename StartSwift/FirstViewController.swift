@@ -135,6 +135,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let fullGreeting = guestList.map(greetPeople)
         fullGreeting.map(println)
         
+
         let fullGreeting2 = fullGreeting.map({
             person in
             return "hello, \(person)"
@@ -180,7 +181,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }
 
